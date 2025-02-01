@@ -70,16 +70,19 @@ export default function TabOneScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    width: "95%",
-    marginVertical: 16,
+    width: "100%",
+    marginTop: "15%",
+    height: "100%",
   },
   title: {
-    fontSize: 20,
+    fontSize: 40,
     fontWeight: "bold",
+    marginLeft: "4%",
+    color: "white",
   },
   shopSection: {
     width: "100%",
-    maxHeight: 300,
+    maxHeight: "100%",
     paddingVertical: 32,
   },
   shopCard: {
