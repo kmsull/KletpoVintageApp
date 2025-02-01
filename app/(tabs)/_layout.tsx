@@ -26,12 +26,26 @@ export default function TabLayout() {
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
+        headerTransparent: true,
+        headerTitleStyle: {
+          color: "transparent",
+        },
+        tabBarInactiveTintColor: Colors[colorScheme ?? "light"].tabIconInactive,
+        tabBarStyle: {
+          borderRadius: 32,
+          backgroundColor: "white",
+          position: "absolute",
+          height: "6%",
+          marginBottom: "5%",
+          width: "80%",
+          marginHorizontal: "10%",
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: "Klepto Vintage Store",
+          title: "Store",
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="store" color={color} size={25} />
           ),
@@ -42,7 +56,7 @@ export default function TabLayout() {
                   <FontAwesome5
                     name="shopping-cart"
                     size={25}
-                    color={Colors[colorScheme ?? "light"].text}
+                    color={Colors[colorScheme ?? "light"].tabIconInactive}
                     style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
                   />
                 )}
