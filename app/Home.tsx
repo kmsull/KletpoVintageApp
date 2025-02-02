@@ -1,5 +1,6 @@
 import { StyleSheet, ScrollView } from "react-native";
 import { Text, View } from "@/components/Themed";
+import ShopCard from "@/components/ShopCard/ShopCard";
 
 export default function TabOneScreen() {
   return (
@@ -11,18 +12,9 @@ export default function TabOneScreen() {
         contentOffset={{ x: -2, y: -8 }}
         showsHorizontalScrollIndicator={false}
       >
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
+        <ShopCard />
+        <ShopCard />
+        <ShopCard />
       </ScrollView>
       <Text style={styles.title}>Pants</Text>
       <ScrollView
@@ -31,18 +23,7 @@ export default function TabOneScreen() {
         contentOffset={{ x: -2, y: -8 }}
         showsHorizontalScrollIndicator={false}
       >
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
+        <ShopCard />
       </ScrollView>
       <Text style={styles.title}>Jackets</Text>
       <ScrollView
@@ -51,18 +32,8 @@ export default function TabOneScreen() {
         contentOffset={{ x: -2, y: -8 }}
         showsHorizontalScrollIndicator={false}
       >
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
-        <View style={styles.shopCard}>
-          <Text>This one</Text>
-        </View>
+        <ShopCard />
+        <ShopCard />
       </ScrollView>
     </ScrollView>
   );
@@ -86,8 +57,8 @@ const styles = StyleSheet.create({
     paddingVertical: 32,
   },
   shopCard: {
-    width: 200,
-    height: 250,
+    width: 250,
+    height: 300,
     shadowOpacity: 2,
     shadowOffset: 10,
     alignItems: "center",
