@@ -52,7 +52,7 @@ export default function TabOneScreen() {
         <>
             <ScrollView style={styles.container} contentContainerStyle={{ paaddingBottom: 100 }}>
                 <Text style={styles.title}>Jackets</Text>
-                <ScrollView horizontal={true} style={styles.shopSection}>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                     {jackets.map((product) => (
                         <ShopCard key={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
                     ))}
@@ -60,14 +60,14 @@ export default function TabOneScreen() {
 
                 <Text style={styles.title}>Shirts</Text>
 
-                <ScrollView horizontal={true} style={styles.shopSection}>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                     {shirts.map((product) => (
                         <ShopCard key={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
                     ))}
                 </ScrollView>
 
                 <Text style={styles.title}>Pants</Text>
-                <ScrollView horizontal={true} style={styles.shopSection}>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                     {pants.map((product) => (
                         <ShopCard key={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
                     ))}
