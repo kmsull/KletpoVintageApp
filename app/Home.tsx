@@ -1,69 +1,105 @@
 import { StyleSheet, ScrollView } from "react-native";
+import { useEffect, useState } from "react";
 import { Text, View } from "@/components/Themed";
 import ShopCard from "@/components/ShopCard/ShopCard";
 
+import { db } from "../db/firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
+
 export default function TabOneScreen() {
-  return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Shirts</Text>
-      <ScrollView
-        style={styles.shopSection}
-        horizontal={true}
-        contentOffset={{ x: -2, y: -8 }}
-        showsHorizontalScrollIndicator={false}
-      >
-        <ShopCard />
-        <ShopCard />
-        <ShopCard />
-      </ScrollView>
-      <Text style={styles.title}>Pants</Text>
-      <ScrollView
-        style={styles.shopSection}
-        horizontal={true}
-        contentOffset={{ x: -2, y: -8 }}
-        showsHorizontalScrollIndicator={false}
-      >
-        <ShopCard />
-      </ScrollView>
-      <Text style={styles.title}>Jackets</Text>
-      <ScrollView
-        style={styles.shopSection}
-        horizontal={true}
-        contentOffset={{ x: -2, y: -8 }}
-        showsHorizontalScrollIndicator={false}
-      >
-        <ShopCard />
-        <ShopCard />
-      </ScrollView>
-    </ScrollView>
-  );
+    const [shirts, setShirts] = useState([]);
+    const [pants, setPants] = useState([]);
+    const [jackets, setJackets] = useState([]);
+
+    useEffect(() => {
+        const fetchPants = async () => {
+            const querySnapshot = await getDocs(collection(db, "Pants"));
+            const pantsList = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setPants(pantsList);
+        };
+        fetchPants();
+    });
+
+    useEffect(() => {
+        const fetchJackets = async () => {
+            const querySnapshot = await getDocs(collection(db, "Jackets"));
+            const jacketsList = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setJackets(jacketsList);
+        };
+        fetchJackets();
+    });
+
+    useEffect(() => {
+        const fetchShirts = async () => {
+            const querySnapshot = await getDocs(collection(db, "Shirts"));
+            const shirtsList = querySnapshot.docs.map((doc) => ({
+                id: doc.id,
+                ...doc.data(),
+            }));
+            setShirts(shirtsList);
+        };
+
+        fetchShirts();
+    }, []);
+
+    return (
+        <>
+            <ScrollView style={styles.container} contentContainerStyle={{ paaddingBottom: 100 }}>
+                <Text style={styles.title}>Jackets</Text>
+                <ScrollView horizontal={true} style={styles.shopSection}>
+                    {jackets.map((product) => (
+                        <ShopCard key={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                    ))}
+                </ScrollView>
+
+                <Text style={styles.title}>Shirts</Text>
+
+                <ScrollView horizontal={true} style={styles.shopSection}>
+                    {shirts.map((product) => (
+                        <ShopCard key={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                    ))}
+                </ScrollView>
+
+                <Text style={styles.title}>Pants</Text>
+                <ScrollView horizontal={true} style={styles.shopSection}>
+                    {pants.map((product) => (
+                        <ShopCard key={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                    ))}
+                </ScrollView>
+                <View style={{ height: 112 }} />
+            </ScrollView>
+        </>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    marginTop: "15%",
-    height: "100%",
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: "bold",
-    marginLeft: "4%",
-    color: "white",
-  },
-  shopSection: {
-    width: "100%",
-    maxHeight: "100%",
-    paddingVertical: 32,
-  },
-  shopCard: {
-    width: 250,
-    height: 300,
-    shadowOpacity: 2,
-    shadowOffset: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 4,
-    marginHorizontal: 10,
-  },
+    container: {
+        width: "100%",
+        marginTop: "15%",
+    },
+    title: {
+        fontSize: 40,
+        fontWeight: "bold",
+        marginLeft: "4%",
+        color: "white",
+    },
+    shopSection: {
+        width: "100%",
+        maxHeight: "100%",
+        paddingVertical: 32,
+    },
+    shopCard: {
+        shadowOpacity: 2,
+        shadowOffset: 10,
+        alignItems: "center",
+        justifyContent: "center",
+        borderRadius: 4,
+        marginHorizontal: 10,
+    },
 });
