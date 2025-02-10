@@ -1,10 +1,12 @@
+import React, { useEffect, useState, useContext } from "react";
 import { StyleSheet, Image, TouchableOpacity, View, useColorScheme } from "react-native";
 import { Text } from "@/components/Themed";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { CartContext } from "@/contexts/CartContext";
 import Colors from "@/constants/Colors";
-import { red } from "react-native-reanimated/lib/typescript/Colors";
 
 interface ShopCardProps {
+    id: string;
     description: string;
     img: string;
     name: string;
@@ -12,9 +14,16 @@ interface ShopCardProps {
     size: string;
 }
 
-export default function ShopCard({ name, img, description, size, price }: ShopCardProps) {
+export default function ShopCard({ id, name, img, description, size, price }: ShopCardProps) {
     const colorScheme = useColorScheme();
     const tintColor = Colors[colorScheme ?? "light"].tint;
+
+    const { addItem } = useContext(CartContext);
+
+    const onAddItem = () => {
+        addItem({ id, name, img, description, size, price });
+        console.log("Item added to cart");
+    };
 
     return (
         <View>
@@ -36,7 +45,7 @@ export default function ShopCard({ name, img, description, size, price }: ShopCa
                     <View style={styles.productPrice}>
                         <Text style={{ color: "white", fontWeight: "bold" }}> ${price}</Text>
                     </View>
-                    <TouchableOpacity style={styles.addCartButton}>
+                    <TouchableOpacity style={styles.addCartButton} onPress={onAddItem}>
                         <FontAwesome5 name="shopping-cart" size={24} style={{ color: "white" }} />
                         <Text style={{ color: "white", fontWeight: "bold" }}> + </Text>
                     </TouchableOpacity>
