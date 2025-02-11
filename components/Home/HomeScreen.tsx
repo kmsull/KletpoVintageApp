@@ -59,7 +59,7 @@ export default function HomeScreen() {
     }, []);
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
+        <ScrollView style={{ width: "100%", marginTop: "15%", backgroundColor: Colors[useColorScheme() ?? "light"].background }} contentContainerStyle={{ paddingBottom: 100 }}>
             <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: Colors[useColorScheme() ?? "light"].text }}>Jackets</Text>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                 {jackets.map((product) => (
@@ -81,7 +81,7 @@ export default function HomeScreen() {
                     <ShopCard key={product.id} product={product} />
                 ))}
             </ScrollView>
-            <View style={{ height: 112 }} />
+            <View style={{ height: 10, backgroundColor: Colors[useColorScheme() ?? "light"].background }} />
         </ScrollView>
     );
 }
