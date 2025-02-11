@@ -3,9 +3,12 @@ import { StyleSheet, Image, TouchableOpacity } from "react-native";
 import { Text, View, ScrollView, ClearView } from "../Themed";
 import { CartContext } from "@/contexts/CartContext";
 import { FontAwesome5 } from "@expo/vector-icons";
+import useTheme from "@/hooks/useTheme";
 
 export default function CartScreen() {
     const { cart, removeItem } = useContext(CartContext);
+
+    const { card } = useTheme();
 
     return (
         <>
@@ -22,7 +25,7 @@ export default function CartScreen() {
                     // Display this list if the cart has items
                     <ScrollView style={styles.cartItemsContainer}>
                         {cart.items.map((item) => (
-                            <ClearView key={item.id} style={styles.cartItem}>
+                            <View key={item.id} style={[styles.cartItem, { backgroundColor: card, borderColor: card }]}>
                                 <Image source={{ uri: item.img }} style={styles.itemImage} />
                                 <ClearView style={styles.itemDetails}>
                                     <Text style={styles.itemName}>{item.name}</Text>
@@ -33,7 +36,7 @@ export default function CartScreen() {
                                 <TouchableOpacity style={{ justifyContent: "center" }} onPress={() => removeItem(item.id)}>
                                     <FontAwesome5 name="trash-alt" style={{ color: "red", fontSize: 24 }} />
                                 </TouchableOpacity>
-                            </ClearView>
+                            </View>
                         ))}
                     </ScrollView>
                 )}
@@ -83,9 +86,7 @@ const styles = StyleSheet.create({
     },
     cartItem: {
         flexDirection: "row",
-        backgroundColor: "#fff",
         borderRadius: 10,
-        borderColor: "gray",
         borderWidth: 2,
         padding: 16,
         marginBottom: 16,
