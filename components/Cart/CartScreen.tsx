@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
-import { StyleSheet, View, Text, Image, ScrollView, TouchableOpacity } from "react-native";
+import { StyleSheet, Image, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, ClearView } from "../Themed";
 import { CartContext } from "@/contexts/CartContext";
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -11,7 +12,7 @@ export default function CartScreen() {
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>Cart</Text>
             </View>
-            <View style={{ paddingHorizontal: 8, height: "73%", justifyContent: "center", overflow: "hidden" }}>
+            <View style={{ paddingHorizontal: 8, height: "80%", justifyContent: "center", overflow: "hidden" }}>
                 {cart.items.length === 0 ? (
                     // Display this message if the cart is empty
                     <View style={styles.emptyCartContainer}>
@@ -21,18 +22,18 @@ export default function CartScreen() {
                     // Display this list if the cart has items
                     <ScrollView style={styles.cartItemsContainer}>
                         {cart.items.map((item) => (
-                            <View key={item.id} style={styles.cartItem}>
+                            <ClearView key={item.id} style={styles.cartItem}>
                                 <Image source={{ uri: item.img }} style={styles.itemImage} />
-                                <View style={styles.itemDetails}>
+                                <ClearView style={styles.itemDetails}>
                                     <Text style={styles.itemName}>{item.name}</Text>
                                     <Text style={styles.itemDescription}>{item.description}</Text>
                                     <Text style={styles.itemSize}>Size: {item.size}</Text>
                                     <Text style={styles.itemPrice}>Price: ${item.price.toFixed(2)}</Text>
-                                </View>
+                                </ClearView>
                                 <TouchableOpacity style={{ justifyContent: "center" }} onPress={() => removeItem(item.id)}>
                                     <FontAwesome5 name="trash-alt" style={{ color: "red", fontSize: 24 }} />
                                 </TouchableOpacity>
-                            </View>
+                            </ClearView>
                         ))}
                     </ScrollView>
                 )}
