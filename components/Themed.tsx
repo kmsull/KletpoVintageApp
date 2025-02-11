@@ -16,6 +16,7 @@ type ThemeProps = {
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
 export type ScrollViewProps = ThemeProps & DefaultScrollView['props'];
+export type TouchableOpacityProps = ThemeProps & DefaultText['props'];
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
@@ -50,4 +51,18 @@ export function ScrollView(props: ScrollViewProps) {
   const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
 
   return <DefaultScrollView style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+export function TouchableOpacity(props: TouchableOpacityProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = useThemeColor({ light: lightColor, dark: darkColor }, 'background');
+
+  return <DefaultText style={[{ backgroundColor }, style]} {...otherProps} />;
+}
+
+export function ClearView(props: ViewProps) {
+  const { style, lightColor, darkColor, ...otherProps } = props;
+  const backgroundColor = 'transparent';
+
+  return <DefaultView style={[{ backgroundColor }, style]} {...otherProps} />;
 }
