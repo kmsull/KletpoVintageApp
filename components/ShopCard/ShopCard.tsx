@@ -3,6 +3,7 @@ import { StyleSheet, Image, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { CartContext } from "@/contexts/CartContext";
+import frame from "../../assets/images/frame.png";
 
 interface ShopCardProps {
     product: Product;
@@ -18,7 +19,6 @@ interface Product {
 }
 
 export default function ShopCard({ product }: ShopCardProps) {
-
     const { id, name, img, description, size, price } = product;
 
     const { addItem } = useContext(CartContext);
@@ -36,7 +36,9 @@ export default function ShopCard({ product }: ShopCardProps) {
                 </View>
 
                 <View style={styles.productImage}>
-                    <Image source={{ uri: img }} style={{ height: 60, width: 60 }} />
+                    <Image source={frame} style={{ position: "absolute", height: 260, width: 260 }} />
+                    {/* <Image source={{ uri: img }} style={{ height: 60, width: 60 }} /> */}
+                    <FontAwesome5 name="tshirt" size={96} />
                 </View>
                 <View style={styles.descriptionContainer}>
                     <Text style={styles.description}> {description} </Text>
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
         shadowRadius: 10,
     },
     productImage: {
-        height: "50%",
+        height: "60%",
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
@@ -86,9 +88,9 @@ const styles = StyleSheet.create({
         fontSize: 24,
     },
     descriptionContainer: {
-        height: "20%",
+        height: "15%",
         width: "100%",
-        paddingHorizontal: "4%",
+        paddingHorizontal: "2%",
         textAlign: "center",
         alignItems: "center",
         justifyContent: "center",
@@ -99,7 +101,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
     },
     productInformation: {
-        height: "20%",
+        height: "15%",
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
