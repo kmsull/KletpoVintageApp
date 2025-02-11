@@ -33,8 +33,8 @@ export default function TabLayout() {
                     backgroundColor: "tan",
                     position: "absolute",
                     height: "7%",
-                    paddingTop: '1%',
-                    marginBottom: "6%",
+                    paddingTop: "1%",
+                    marginBottom: "3%",
                     width: "80%",
                     marginHorizontal: "10%",
                     justifyContent: "center",
@@ -49,10 +49,25 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => <FontAwesome5 name="store" color={color} size={25} />,
                     headerRight: () => (
                         <Link href="/cart" asChild>
-                            <Pressable>
-                                {({ pressed }) => (
-                                    <FontAwesome5 name="shopping-cart" size={25} color={Colors[colorScheme ?? "light"].text} style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }} />
-                                )}
+                            <Pressable
+                                style={{
+                                    backgroundColor: Colors[colorScheme ?? "light"].altbackground,
+                                    borderRadius: 50,
+                                    borderColor: Colors[colorScheme ?? "light"].border,
+                                    // borderWidth: 2,
+                                    height: 64,
+                                    width: 64,
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                    marginTop: 32,
+                                    marginRight: 16,
+                                    shadowColor: "#000",
+                                    shadowOffset: { width: 5, height: 6 },
+                                    shadowOpacity: 0.8,
+                                    shadowRadius: 10,
+                                }}
+                            >
+                                {({ pressed }) => <FontAwesome5 name="shopping-cart" size={25} color={Colors[colorScheme ?? "light"].text} style={{ opacity: pressed ? 0.5 : 1 }} />}
                             </Pressable>
                         </Link>
                     ),
@@ -69,7 +84,7 @@ export default function TabLayout() {
                 name="map"
                 options={{
                     title: "Events",
-                    tabBarIcon: ({ color }) => <FontAwesome5 name="address-card" color={color} size={25} />,
+                    tabBarIcon: ({ color }) => <FontAwesome5 name="map-marked-alt" color={color} size={25} />,
                 }}
             />
             <Tabs.Screen

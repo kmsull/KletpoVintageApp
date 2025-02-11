@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Text, View, ScrollView } from "@/components/Themed";
 import ShopCard from "@/components/ShopCard/ShopCard";
-
+import Colors from "@/constants/Colors";
+import { useColorScheme } from "@/components/useColorScheme";
 import { db } from "@/db/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -58,16 +59,15 @@ export default function HomeScreen() {
     }, []);
 
     return (
-        <>
-            <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
-                <Text style={styles.title}>Jackets</Text>
-                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                    {jackets.map((product) => (
-                        <ShopCard key={product.id} product={product} />
-                    ))}
-                </ScrollView>
+        <ScrollView style={{ width: "100%", marginTop: "15%", backgroundColor: Colors[useColorScheme() ?? "light"].background }} contentContainerStyle={{ paddingBottom: 100 }}>
+            <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: Colors[useColorScheme() ?? "light"].text }}>Jackets</Text>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                {jackets.map((product) => (
+                    <ShopCard key={product.id} product={product} />
+                ))}
+            </ScrollView>
 
-                <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: "white" }}>Shirts</Text>
+            <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: Colors[useColorScheme() ?? "light"].text }}>Shirts</Text>
 
                 <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                     {shirts.map((product) => (
@@ -75,15 +75,14 @@ export default function HomeScreen() {
                     ))}
                 </ScrollView>
 
-                <Text style={styles.title}>Pants</Text>
-                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                    {pants.map((product) => (
-                        <ShopCard key={product.id} product={product} />
-                    ))}
-                </ScrollView>
-                <View style={{ height: 112, backgroundColor: 'transparent' }} />
+            <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: Colors[useColorScheme() ?? "light"].text }}>Pants</Text>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                {pants.map((product) => (
+                    <ShopCard key={product.id} product={product} />
+                ))}
             </ScrollView>
-        </>
+            <View style={{ height: 10, backgroundColor: Colors[useColorScheme() ?? "light"].background }} />
+        </ScrollView>
     );
 }
 
@@ -96,7 +95,7 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: "bold",
         marginLeft: "4%",
-        color: "white",
+        color: "black",
     },
     shopSection: {
         width: "100%",
