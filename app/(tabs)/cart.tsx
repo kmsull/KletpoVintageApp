@@ -1,30 +1,9 @@
-import { StyleSheet } from "react-native";
+import CartScreen from "@/components/Cart/CartScreen";
 
-import EditScreenInfo from "@/components/EditScreenInfo";
-import { Text, View } from "@/components/Themed";
-import Cart from "@/components/Cart/CartScreen";
-
-export default function TabTwoScreen() {
-  return (
-    <View style={styles.container}>
-      <Cart />
-    </View>
-  );
+export default function CartPage() {
+    return (
+        <>
+            <CartScreen />
+        </>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});
