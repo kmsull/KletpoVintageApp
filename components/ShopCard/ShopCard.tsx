@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
 import { StyleSheet, Image, TouchableOpacity, View } from "react-native";
-import { Text } from "@/components/Themed";
+import { Text, Card, ClearView } from "@/components/Themed";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { CartContext } from "@/contexts/CartContext";
 import frame from "../../assets/images/frame.png";
+import useTheme from "@/hooks/useTheme";
 
 interface ShopCardProps {
     product: Product;
@@ -19,9 +20,12 @@ interface Product {
 }
 
 export default function ShopCard({ product }: ShopCardProps) {
+    
     const { id, name, img, description, size, price } = product;
 
     const { addItem } = useContext(CartContext);
+
+    const { text, background, altBackground, button } = useTheme();
 
     const onAddItem = () => {
         addItem({ id, name, img, description, size, price });
@@ -29,43 +33,44 @@ export default function ShopCard({ product }: ShopCardProps) {
     };
 
     return (
-        <View>
-            <View style={styles.shopCard}>
-                <View style={styles.productTitleContainer}>
-                    <Text style={styles.productTitle}> {name} </Text>
-                </View>
+        <Card style={styles.shopCard}>
+            <ClearView style={styles.productTitleContainer}>
+                <Text style={styles.productTitle}> {name} </Text>
+            </ClearView>
 
-                <View style={styles.productImage}>
-                    <Image source={frame} style={{ position: "absolute", height: 260, width: 260 }} />
-                    {/* <Image source={{ uri: img }} style={{ height: 60, width: 60 }} /> */}
-                    <FontAwesome5 name="tshirt" size={96} />
+            <ClearView style={styles.productImage}>
+                <Image source={frame} style={{ position: "absolute", height: 260, width: 260 }} />
+                {/* <Image source={{ uri: img }} style={{ height: 60, width: 60 }} /> */}
+                <FontAwesome5 name="tshirt" size={96} />
+            </ClearView>
+            <ClearView style={styles.descriptionContainer}>
+                <Text style={styles.description}> {description} </Text>
+            </ClearView>
+            <ClearView style={styles.productInformation}>
+                <View style={[styles.sizeContainer, { backgroundColor: button, borderColor: button }]}>
+                    <Text style={{ color: "white", fontWeight: "bold" }}> {size}</Text>
                 </View>
-                <View style={styles.descriptionContainer}>
-                    <Text style={styles.description}> {description} </Text>
+                <View style={[styles.productPrice, { backgroundColor: button, borderColor: button }]}>
+                    <Text style={{ color: "white", fontWeight: "bold" }}> ${price}</Text>
                 </View>
-                <View style={styles.productInformation}>
-                    <View style={styles.sizeContainer}>
-                        <Text style={{ color: "white", fontWeight: "bold" }}> {size}</Text>
-                    </View>
-                    <View style={styles.productPrice}>
-                        <Text style={{ color: "white", fontWeight: "bold" }}> ${price}</Text>
-                    </View>
-                    <TouchableOpacity style={styles.addCartButton} onPress={onAddItem}>
-                        <FontAwesome5 name="shopping-cart" size={24} style={{ color: "white" }} />
-                        <Text style={{ color: "white", fontWeight: "bold" }}> + </Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </View>
+                <TouchableOpacity 
+                    style={[styles.addCartButton, { backgroundColor: button, borderColor: button }]} 
+                    onPress={onAddItem}
+                >
+                    <FontAwesome5 name="shopping-cart" size={24} style={{ color: "white" }} />
+                    <Text style={{ color: "white", fontWeight: "bold" }}> + </Text>
+                </TouchableOpacity>
+            </ClearView>
+        </Card>
     );
 }
+
 const styles = StyleSheet.create({
     shopCard: {
         width: 300,
         height: 400,
         borderRadius: 32,
         marginHorizontal: 10,
-        backgroundColor: "white",
         shadowColor: "#000",
         shadowOffset: { width: 10, height: 12 },
         shadowOpacity: 0.8,
@@ -82,7 +87,6 @@ const styles = StyleSheet.create({
         width: "100%",
         alignItems: "center",
         justifyContent: "center",
-        color: "black",
     },
     productTitle: {
         fontSize: 24,
@@ -110,8 +114,6 @@ const styles = StyleSheet.create({
     },
     productPrice: {
         borderWidth: 3,
-        borderColor: "#ba0d0d",
-        backgroundColor: "#ba0d0d",
         width: "30%",
         height: "60%",
         borderRadius: 16,
@@ -120,10 +122,8 @@ const styles = StyleSheet.create({
     },
     addCartButton: {
         borderWidth: 3,
-        borderColor: "#ba0d0d",
         width: "30%",
         height: "60%",
-        backgroundColor: "#ba0d0d",
         borderRadius: 16,
         alignItems: "center",
         justifyContent: "center",
@@ -131,10 +131,8 @@ const styles = StyleSheet.create({
     },
     sizeContainer: {
         borderWidth: 3,
-        borderColor: "#ba0d0d",
         width: "20%",
         height: "60%",
-        backgroundColor: "#ba0d0d",
         borderRadius: 16,
         alignItems: "center",
         justifyContent: "center",
