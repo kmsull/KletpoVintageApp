@@ -13,6 +13,7 @@ export default function useTheme() {
         shopCard: Colors[colorScheme].shopCard,
         button: Colors[colorScheme].button,
         card: Colors[colorScheme].card,
+        tabIconInactive: Colors[colorScheme].tabIconInactive,
     };
 
     return themeColors;

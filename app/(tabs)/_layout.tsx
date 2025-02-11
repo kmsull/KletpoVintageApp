@@ -2,11 +2,9 @@ import React from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 import { Pressable } from "react-native";
-
-import Colors from "@/constants/Colors";
-import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { FontAwesome5 } from "@expo/vector-icons";
+import useTheme from "@/hooks/useTheme";
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: { name: React.ComponentProps<typeof FontAwesome>["name"]; color: string }) {
@@ -14,12 +12,13 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof FontAwesome>["nam
 }
 
 export default function TabLayout() {
-    const colorScheme = useColorScheme();
+
+    const { text, altBackground, tint, border, tabIconInactive } = useTheme();
 
     return (
         <Tabs
             screenOptions={{
-                tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+                tabBarActiveTintColor: tint,
                 // Disable the static render of the header on web
                 // to prevent a hydration error in React Navigation v6.
                 headerShown: useClientOnlyValue(false, true),
@@ -27,7 +26,7 @@ export default function TabLayout() {
                 headerTitleStyle: {
                     color: "transparent",
                 },
-                tabBarInactiveTintColor: Colors[colorScheme ?? "light"].tabIconInactive,
+                tabBarInactiveTintColor: tabIconInactive,
                 tabBarStyle: {
                     borderRadius: 32,
                     backgroundColor: "tan",
@@ -51,9 +50,9 @@ export default function TabLayout() {
                         <Link href="/cart" asChild>
                             <Pressable
                                 style={{
-                                    backgroundColor: Colors[colorScheme ?? "light"].altbackground,
+                                    backgroundColor: altBackground,
                                     borderRadius: 50,
-                                    borderColor: Colors[colorScheme ?? "light"].border,
+                                    borderColor: border,
                                     // borderWidth: 2,
                                     height: 64,
                                     width: 64,
@@ -67,7 +66,7 @@ export default function TabLayout() {
                                     shadowRadius: 10,
                                 }}
                             >
-                                {({ pressed }) => <FontAwesome5 name="shopping-cart" size={25} color={Colors[colorScheme ?? "light"].text} style={{ opacity: pressed ? 0.5 : 1 }} />}
+                                {({ pressed }) => <FontAwesome5 name="shopping-cart" size={25} color={text} style={{ opacity: pressed ? 0.5 : 1 }} />}
                             </Pressable>
                         </Link>
                     ),
