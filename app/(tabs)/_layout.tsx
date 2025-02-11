@@ -67,7 +67,7 @@ export default function TabLayout() {
                 name="map"
                 options={{
                     title: "Events",
-                    tabBarIcon: ({ color }) => <FontAwesome5 name="address-card" color={color} size={25} />,
+                    tabBarIcon: ({ color }) => <FontAwesome5 name="map-marked-alt" color={color} size={25} />,
                 }}
             />
             <Tabs.Screen
