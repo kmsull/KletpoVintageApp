@@ -6,10 +6,19 @@ import ShopCard from "@/components/ShopCard/ShopCard";
 import { db } from "@/db/firebaseConfig";
 import { collection, getDocs } from "firebase/firestore";
 
-export default function TabOneScreen() {
-    const [shirts, setShirts] = useState([]);
-    const [pants, setPants] = useState([]);
-    const [jackets, setJackets] = useState([]);
+type Product = {
+    id: string;
+    name: string;
+    img: string;
+    description: string;
+    size: string;
+    price: number;
+};
+
+export default function HomeScreen() {
+    const [shirts, setShirts] = useState<Product[]>([]);
+    const [pants, setPants] = useState<Product[]>([]);
+    const [jackets, setJackets] = useState<Product[]>([]);
 
     useEffect(() => {
         const fetchPants = async () => {
@@ -49,32 +58,30 @@ export default function TabOneScreen() {
     }, []);
 
     return (
-        <>
-            <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
-                <Text style={styles.title}>Jackets</Text>
-                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                    {jackets.map((product) => (
-                        <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
-                    ))}
-                </ScrollView>
-
-                <Text style={styles.title}>Shirts</Text>
-
-                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                    {shirts.map((product) => (
-                        <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
-                    ))}
-                </ScrollView>
-
-                <Text style={styles.title}>Pants</Text>
-                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                    {pants.map((product) => (
-                        <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
-                    ))}
-                </ScrollView>
-                <View style={{ height: 112 }} />
+        <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
+            <Text style={styles.title}>Jackets</Text>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                {jackets.map((product) => (
+                    <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                ))}
             </ScrollView>
-        </>
+
+            <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: "white" }}>Shirts</Text>
+
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                {shirts.map((product) => (
+                    <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                ))}
+            </ScrollView>
+
+            <Text style={styles.title}>Pants</Text>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                {pants.map((product) => (
+                    <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                ))}
+            </ScrollView>
+            <View style={{ height: 112 }} />
+        </ScrollView>
     );
 }
 
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
     },
     shopCard: {
         shadowOpacity: 2,
-        shadowOffset: 10,
+        shadowOffset: { width: 10, height: 12 },
         alignItems: "center",
         justifyContent: "center",
         borderRadius: 4,
