@@ -4,6 +4,7 @@ import React, { createContext, ReactNode, useState, useEffect } from 'react';
 interface Item {
     id: string;
     name: string;
+    img: string
     description: string;
     size: string;
     price: number;
