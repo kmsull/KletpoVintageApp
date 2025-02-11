@@ -12,6 +12,7 @@ export default function useTheme() {
         border: Colors[colorScheme].border,
         shopCard: Colors[colorScheme].shopCard,
         button: Colors[colorScheme].button,
+        card: Colors[colorScheme].card,
     };
 
     return themeColors;
