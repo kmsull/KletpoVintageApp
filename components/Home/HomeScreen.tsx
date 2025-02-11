@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, ScrollView } from "react-native";
-import { Text, View } from "@/components/Themed";
+import { StyleSheet } from "react-native";
+import { Text, View, ScrollView } from "@/components/Themed";
 import ShopCard from "@/components/ShopCard/ShopCard";
 
 import { db } from "@/db/firebaseConfig";
@@ -58,30 +58,32 @@ export default function HomeScreen() {
     }, []);
 
     return (
-        <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
-            <Text style={styles.title}>Jackets</Text>
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                {jackets.map((product) => (
-                    <ShopCard key={product.id} product={product} />
-                ))}
-            </ScrollView>
+        <>
+            <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 100 }}>
+                <Text style={styles.title}>Jackets</Text>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                    {jackets.map((product) => (
+                        <ShopCard key={product.id} product={product} />
+                    ))}
+                </ScrollView>
 
-            <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: "white" }}>Shirts</Text>
+                <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: "white" }}>Shirts</Text>
 
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                {shirts.map((product) => (
-                    <ShopCard key={product.id} product={product} />
-                ))}
-            </ScrollView>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                    {shirts.map((product) => (
+                        <ShopCard key={product.id} product={product} />
+                    ))}
+                </ScrollView>
 
-            <Text style={styles.title}>Pants</Text>
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                {pants.map((product) => (
-                    <ShopCard key={product.id} product={product} />
-                ))}
+                <Text style={styles.title}>Pants</Text>
+                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                    {pants.map((product) => (
+                        <ShopCard key={product.id} product={product} />
+                    ))}
+                </ScrollView>
+                <View style={{ height: 112, backgroundColor: 'transparent' }} />
             </ScrollView>
-            <View style={{ height: 112 }} />
-        </ScrollView>
+        </>
     );
 }
 
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
         width: "100%",
         maxHeight: "100%",
         paddingVertical: 32,
+        backgroundColor: "transparent",
     },
     shopCard: {
         shadowOpacity: 2,
