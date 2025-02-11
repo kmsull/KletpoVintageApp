@@ -1,11 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
-import { StyleSheet, Image, TouchableOpacity, View, useColorScheme } from "react-native";
+import { StyleSheet, Image, TouchableOpacity, View } from "react-native";
 import { Text } from "@/components/Themed";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { CartContext } from "@/contexts/CartContext";
-import Colors from "@/constants/Colors";
 
 interface ShopCardProps {
+    product: Product;
+}
+
+interface Product {
     id: string;
     description: string;
     img: string;
@@ -14,9 +17,9 @@ interface ShopCardProps {
     size: string;
 }
 
-export default function ShopCard({ id, name, img, description, size, price }: ShopCardProps) {
-    const colorScheme = useColorScheme();
-    const tintColor = Colors[colorScheme ?? "light"].tint;
+export default function ShopCard({ product }: ShopCardProps) {
+
+    const { id, name, img, description, size, price } = product;
 
     const { addItem } = useContext(CartContext);
 

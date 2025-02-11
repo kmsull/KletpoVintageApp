@@ -62,7 +62,7 @@ export default function HomeScreen() {
             <Text style={styles.title}>Jackets</Text>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                 {jackets.map((product) => (
-                    <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                    <ShopCard key={product.id} product={product} />
                 ))}
             </ScrollView>
 
@@ -70,14 +70,14 @@ export default function HomeScreen() {
 
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                 {shirts.map((product) => (
-                    <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                    <ShopCard key={product.id} product={product} />
                 ))}
             </ScrollView>
 
             <Text style={styles.title}>Pants</Text>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                 {pants.map((product) => (
-                    <ShopCard key={product.id} id={product.id} name={product.name} img={product.img} description={product.description} size={product.size} price={product.price} />
+                    <ShopCard key={product.id} product={product} />
                 ))}
             </ScrollView>
             <View style={{ height: 112 }} />
