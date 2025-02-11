@@ -34,7 +34,7 @@ export default function TabLayout() {
                     position: "absolute",
                     height: "7%",
                     paddingTop: "1%",
-                    marginBottom: "6%",
+                    marginBottom: "3%",
                     width: "80%",
                     marginHorizontal: "10%",
                     justifyContent: "center",
