@@ -61,22 +61,21 @@ export default function HomeScreen() {
 
     return (
         <ScrollView style={{ width: "100%", marginTop: "15%", backgroundColor: background }} contentContainerStyle={{ paddingBottom: 100 }}>
-            <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: text }}>Jackets</Text>
+            <Text style={[styles.title, { color: text }]}>Jackets</Text>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                 {jackets.map((product) => (
                     <ShopCard key={product.id} product={product} />
                 ))}
             </ScrollView>
 
-            <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: text }}>Shirts</Text>
+            <Text style={[styles.title, { color: text }]}>Shirts</Text>
+            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
+                {shirts.map((product) => (
+                    <ShopCard key={product.id} product={product} />
+                ))}
+            </ScrollView>
 
-                <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
-                    {shirts.map((product) => (
-                        <ShopCard key={product.id} product={product} />
-                    ))}
-                </ScrollView>
-
-            <Text style={{ fontSize: 40, fontWeight: "bold", marginLeft: "4%", color: text }}>Pants</Text>
+            <Text style={[styles.title, { color: text }]}>Pants</Text>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                 {pants.map((product) => (
                     <ShopCard key={product.id} product={product} />
@@ -96,7 +95,6 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: "bold",
         marginLeft: "4%",
-        color: "black",
     },
     shopSection: {
         width: "100%",
