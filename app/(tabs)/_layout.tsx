@@ -49,9 +49,9 @@ export default function TabLayout() {
                     tabBarIcon: ({ color }) => <FontAwesome5 name="store" color={color} size={25} />,
                     headerRight: () => (
                         <Link href="/cart" asChild>
-                            <Pressable>
+                            <Pressable style={{ backgroundColor: "white", borderRadius: 50, height: 64, width: 64, alignItems: "center", justifyContent: "center", marginTop: 32, marginRight: 16 }}>
                                 {({ pressed }) => (
-                                    <FontAwesome5 name="shopping-cart" size={25} color={Colors[colorScheme ?? "light"].tabIconInactive} style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }} />
+                                    <FontAwesome5 name="shopping-cart" size={25} color={Colors[colorScheme ?? "light"].tabIconInactive} style={{ padding: 8, opacity: pressed ? 0.5 : 1 }} />
                                 )}
                             </Pressable>
                         </Link>
