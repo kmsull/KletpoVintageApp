@@ -3,7 +3,7 @@ const tintColorDark = "#fff";
 
 export default {
     light: {
-        text: "#000",
+        text: "bkack",
         background: tintColorLight,
         shopCard: "red",
         tint: tintColorLight,
