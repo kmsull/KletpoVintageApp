@@ -39,7 +39,7 @@ export default function ShopCard({ product }: ShopCardProps) {
                 <Image source={frame} style={{ height: 260, width: 260 }} />
                 <FontAwesome5 name="tshirt" size={96} style={{ position: "absolute", top: "30%", left: "30%" }} />
             </ClearView>
-            <ClearView style={{ paddingVertical: 4 }}>
+            <ClearView style={{ paddingVertical: 4, maxWidth: 260, }}>
                 <Text style={{ fontSize: 16, fontWeight: "600" }}>{description}</Text>
             </ClearView>
             <ClearView style={styles.buttonContainer}>
