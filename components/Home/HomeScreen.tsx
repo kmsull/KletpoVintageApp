@@ -60,7 +60,7 @@ export default function HomeScreen() {
     }, []);
 
     return (
-        <ScrollView style={{ width: "100%", marginTop: "15%", backgroundColor: background }} contentContainerStyle={{ paddingBottom: 100 }}>
+        <ScrollView style={{ width: "100%", paddingTop: "15%", backgroundColor: background }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 100 }}>
             <Text style={[styles.title, { color: text }]}>Jackets</Text>
             <ScrollView showsHorizontalScrollIndicator={false} horizontal={true} style={styles.shopSection}>
                 {jackets.map((product) => (
