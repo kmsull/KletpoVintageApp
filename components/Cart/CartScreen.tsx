@@ -62,7 +62,7 @@ export default function CartScreen() {
 
 const styles = StyleSheet.create({
     titleContainer: {
-        marginTop: 40,
+        paddingTop: 45,
         alignItems: "center",
         paddingVertical: 4,
     },
