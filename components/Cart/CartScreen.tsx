@@ -23,7 +23,7 @@ export default function CartScreen() {
                     </View>
                 ) : (
                     // Display this list if the cart has items
-                    <ScrollView style={styles.cartItemsContainer}>
+                    <ScrollView>
                         {cart.items.map((item) => (
                             <View key={item.id} style={[styles.cartItem, { backgroundColor: card, borderColor: card }]}>
                                 <Image source={{ uri: item.img }} style={styles.itemImage} />
@@ -62,10 +62,9 @@ export default function CartScreen() {
 
 const styles = StyleSheet.create({
     titleContainer: {
-        marginTop: 60,
+        marginTop: 40,
         alignItems: "center",
-        width: "100%",
-        height: "5%",
+        paddingVertical: 4,
     },
     title: {
         fontSize: 32,
@@ -80,9 +79,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: "#666",
         textAlign: "center",
-    },
-    cartItemsContainer: {
-        width: "100%",
     },
     cartItem: {
         flexDirection: "row",
