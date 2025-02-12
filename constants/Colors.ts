@@ -1,4 +1,4 @@
-const tintColorLight = "#F5F5F5";
+const tintColorLight = "#49A9DA";
 const tintColorDark = "#fff";
 
 export default {
@@ -9,8 +9,8 @@ export default {
         border: "grey",
         shopCard: "red",
         button: "#ba0d0d",
-        card: '#F5F5F5',
-        tint: 'black',
+        card: "white",
+        tint: "black",
         tabIconDefault: "#ccc",
         tabIconSelected: "#ba0d0d",
         tabIconInactive: "#c19b54",
@@ -21,8 +21,8 @@ export default {
         altBackground: "#000",
         border: "#fff",
         shopCard: "blue",
-        button: '#ba0d0d',
-        card: '#313131',
+        button: "#ba0d0d",
+        card: "#313131",
         tint: tintColorDark,
         tabIconDefault: "#ccc",
         tabIconSelected: tintColorDark,
